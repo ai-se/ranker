@@ -1,5 +1,5 @@
 from __future__ import division,print_function
-import sys,random
+import sys,random,time
 sys.dont_write_bytecode = True
 
 import housing,ranges
@@ -10,6 +10,9 @@ from rangesLib import *
 def g(x): return ('%g' % x)
 
 def _rangeLib(seed=1):
+  print("\n######################")
+  pretty(The)
+  print("\n#",time.strftime('%Y/%m/%d/ %H:%M:%S'))
   random.seed(seed)
   def show(n,rule):
     print(n,g(rule.score),rule)

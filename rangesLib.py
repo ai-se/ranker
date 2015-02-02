@@ -1,5 +1,5 @@
 from __future__ import division,print_function
-import sys,random
+import sys,random,json
 sys.dont_write_bytecode = True
 
 r= random.random
@@ -9,6 +9,7 @@ def lt(x,y) : return x < y
 
 class o:
   def d(i)           : return i.__dict__
+  def items(i)      : return i.__dict__.items()
   def update(i,**d)  : i.d().update(**d); return i
   def has(i,k)    : return k in i.d()
   def __init__(i,**d): i.update(**d)
@@ -39,6 +40,14 @@ def the():
              enough=enough))
 
 The=the()
+
+def pretty(d, indent=0):
+   for key, value in d.items():
+      print('\t' * indent + str(key) + ':')
+      if isinstance(value, (dict,o)):
+         pretty(value, indent+1)
+      else:
+         print('\t' * (indent+1) + str(value))
 
 class Cache():
   def __init__(i,size=None):

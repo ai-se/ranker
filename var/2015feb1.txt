@@ -1,3 +1,33 @@
+
+######################
+sdiv:
+	cohen:
+		0.3
+	tiny:
+		3
+cache:
+	size:
+		128
+ranker:
+	retries:
+		32
+	enough:
+		<function enough at 0x7f8efd76e578>
+	beam:
+		16
+	small:
+		0.01
+	repeats:
+		32
+	tiny:
+		20
+lib:
+	most:
+		100000000000000000000000000000000
+	tiny:
+		1e-05
+
+# 2015/02/02/ 04:51:22
 0.0834365603076
 crim 1
 zone 3

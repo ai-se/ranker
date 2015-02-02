@@ -1,7 +1,7 @@
 
 ######################
 
-#  2015/02/02/ 15:10:28 
+#  2015/02/02/ 15:11:03 
 
 sdiv:
 	cohen:
@@ -15,7 +15,7 @@ ranker:
 	retries:
 		32
 	enough:
-		<function enough at 0x2b9c14b6a500>
+		<function enough at 0x2abca5955500>
 	beam:
 		16
 	small:

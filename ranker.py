@@ -19,10 +19,11 @@ def _rangeLib(seed=1):
   print(b4.mu) 
   r=[]
   for i  in t.indep: 
-    more=ranges.sdiv(t.data,attr=t.names[i],tiny=20,
+    more=ranges.sdiv(t.data,attr=t.names[i],
+              tiny=The.ranker.tiny,
               x=lambda z:z[i],
               y=lambda z:z.score,
-              small=0.01)
+              small=The.ranker.small)
     print(t.names[i],len(more) )
     if len(more) > 1:
         r += more 
@@ -34,14 +35,14 @@ def _rangeLib(seed=1):
   rules =map(lambda z:Rule([z],z.rows),r)
   most=b4.mu
   n=0 
-  for _ in range(32):
-    rules = sorted(rules,key=lambda z: z.score)[-16:]
-    for i in range(32): 
+  for _ in xrange(The.ranker.retries):
+    rules = sorted(rules,key=lambda z: z.score)[-1*The.ranker.beam:]
+    for i in xrange(The.ranker.repeats): 
       n+=1
       rule1  = random.choice(rules)
       rule2  = random.choice(rules) 
       rule3 = rule1+rule2
-      if rule3 and len(rule3.rows) > len(t.data)**0.5  and rule3.score > most:
+      if rule3 and The.ranker.enough(rule3.rows,t.data) and rule3.score > most:
         most = rule3.score 
         print("")
         print(n,most,int(100*most/b4.mu))

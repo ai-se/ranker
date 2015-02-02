@@ -21,10 +21,28 @@ class o:
     show = [':%s %s' % (k, name(i.d()[k])) 
             for k in keys]
     return '{'+' '.join(show)+'}'
+    
+def the(): 
+  def enough(ruleRows,allRows):
+      return len(ruleRows) >= len(allRows)**0.5
+  return  o(
+    cache=o(size=128),
+    lib=o(tiny=0.00001,
+          most=10**32),
+    sdiv=o(tiny=3,
+           cohen=0.3),
+    ranker=o(tiny=20,
+             small=0.01,
+             repeats=32,
+             beam=16,
+             retries=32,
+             enough=enough))
+
+The=the()
 
 class Cache():
-  def __init__(i,size=128):
-    i.size = size
+  def __init__(i,size=None):
+    i.size = size or The.cache.size
     i.reset()
   def reset(i):
     i.n = 0
@@ -116,13 +134,13 @@ def g(lst,n=0):
 def data(**d):  
   lo,hi={},{}
   def lohi0(j,n):  
-      hi[j] = max(n, hi.get(j,-1*10**32))
-      lo[j] = min(n, lo.get(j,   10**32))
+      hi[j] = max(n, hi.get(j,-1*The.lib.most))
+      lo[j] = min(n, lo.get(j,   The.lib.most))
   def lohi(one):
     for j in less: lohi0(j,one[j])
     for j in more: lohi0(j, one[j])
   def norm(j,n):  
-    return (n - lo[j] ) / (hi[j] - lo[j] + 0.0001) 
+    return (n - lo[j] ) / (hi[j] - lo[j] + The.lib.tiny) 
   def score(one):
     all,n = 0,0
     for j in less:

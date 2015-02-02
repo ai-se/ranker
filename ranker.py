@@ -39,16 +39,16 @@ def _rangeLib(seed=1):
   most=b4.mu
   n=0 
   for _ in xrange(The.ranker.retries):
-    rules = sorted(rules,key=lambda z: z.score)[-1*The.ranker.beam:]
+    rules = sorted(rules,key=lambda z: z.score)[-1*The.ranker.beam:] 
     for i in xrange(The.ranker.repeats): 
       n+=1
       rule1  = random.choice(rules)
       rule2  = random.choice(rules) 
       rule3 = rule1+rule2
-      if rule3 and The.ranker.enough(rule3.rows,t.data) and rule3.score > most:
-        most = rule3.score 
+      if rule3 and The.ranker.enough(rule3.rows,t.data) and rule3.score > most: 
+        most = rule3.score
         print("")
-        print(n,most,int(100*most/b4.mu))
+        print(n,most,int(100*rule3.score/b4.mu))
         show(1,rule1)
         show(2,rule2)
         show(3,rule3)

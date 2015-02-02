@@ -12,7 +12,7 @@ ranker:
 	retries:
 		32
 	enough:
-		<function enough at 0x2af0a555c578>
+		<function enough at 0x2ab3c79ae578>
 	beam:
 		16
 	small:
@@ -27,7 +27,7 @@ lib:
 	tiny:
 		1e-05
 
-# 2015/02/02/ 14:47:16
+# 2015/02/02/ 14:54:13
 0.0834365603076
 crim 1
 zone 3

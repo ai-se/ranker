@@ -133,7 +133,7 @@ class Rule:
      else:
        rows = rows & now.rows 
      if not rows: 
-       return False
+       return False 
      b4 = now
    return Rule(ranges,rows,i.score)
  
@@ -150,14 +150,15 @@ def data(**d):
     for j in more: lohi0(j, one[j])
   def norm(j,n):  
     return (n - lo[j] ) / (hi[j] - lo[j] + The.lib.tiny) 
-  def score(one):
+  def fromHell(one):
     all,n = 0,0
-    for j in less:
-      n   += 1 
-      all += (1 - norm(j,one[j]))**2
+    moreHell, lessHell = 0,1
     for j in more:
       n   += 1 
-      all += norm(j,one[j])**2
+      all += (moreHell - norm(j,one[j]))**2
+    for j in less:
+      n   += 1 
+      all += (lessHell - norm(j,one[j]))**2
     return all**2 / n**2
   names=d["names"] 
   data=d["data"]
@@ -167,7 +168,8 @@ def data(**d):
   indep=[i for i,name in enumerate(names) if not i in dep]
   for one in data: lohi(one)
   return o(more=more,less=less,indep=indep,names=names,
-           data=map(lambda one: Row(one,score(one)),
+           data=map(lambda one: Row(one,
+                                    fromHell(one)),
                     data))
   
 class Row:

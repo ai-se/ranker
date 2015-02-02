@@ -17,4 +17,7 @@ update:  gitting
 
 status: gitting
 	- git status
+	
+demo1:
+	python ranker.py | tee var/demo1.txt
 

@@ -33,8 +33,8 @@ def _rangeLib(seed=1):
         r += more 
   #r = sorted(r,key=lambda z : z.y.mu*-1)
   r=[one for one in r if one.y.mu > b4.mu]
-  for one in r:
-    print(one,o(mu=g(one.y.mu),sd=g(one.y.sd)), '<==',int(100*one.y.mu/b4.mu),"%")
+  #for one in r:
+  #  print(one,o(mu=g(one.y.mu),sd=g(one.y.sd)), '<==',int(100*one.y.mu/b4.mu),"%")
   #exit()   
   rules =map(lambda z:Rule([z],z.rows),r)
   most=b4.mu

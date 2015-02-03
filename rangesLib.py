@@ -108,7 +108,7 @@ class Range:
         return '%s:%s' % (i.key,i.n)
         
 class Rule:
-  def __init__(i,ranges,rows,score=lambda x:1):
+  def __init__(i,ranges,rows):
     i.ranges=ranges
     i.keys=set(map(lambda z:z.key, ranges))
     i.rows=rows
@@ -135,7 +135,7 @@ class Rule:
      if not rows: 
        return False 
      b4 = now
-   return Rule(ranges,rows,i.score)
+   return Rule(ranges,rows)
  
 def g(lst,n=0):
   return map(lambda x:round(x,n),lst)
